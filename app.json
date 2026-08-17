@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "projectRN",
+    "slug": "projectrn",
+    "scheme": "projectrn",
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
