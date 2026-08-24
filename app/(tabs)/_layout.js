@@ -20,17 +20,17 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="aulas"
+        name="post"
         options={{
-          title: "Aulas",
-          headerTitle: "Conteúdo",
+          title: "Post",
+          headerTitle: "Api do codeverse",
         }}
       />
             <Tabs.Screen
-        name="interface"
+        name="get"
         options={{
-          title: "Interface",
-          headerTitle: "Interface",
+          title: "Get",
+          headerTitle: "Api do codeverse",
         }}
       />
             <Tabs.Screen

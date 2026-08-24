@@ -12,7 +12,7 @@ export default function AboutScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.top}>
-        <Ionicons name="help-circle-outline" size={100} color="black" />
+        <Ionicons name="help-circle-outline" size={100} color="red" />
         <Text styles={styles.h3}>
           Esse projeto é o primeiro de mobile no Terceiro Semestre!
         </Text>
@@ -33,69 +33,77 @@ export default function AboutScreen() {
         </Text>
       </View>
       <View style={styles.cardSocials}>
-          <Text style={styles.socials}>
-            <Text style={styles.logo}>
-              <Ionicons name="logo-linkedin" size={18} color="black" />
-              <Text
-                style={styles.link}
-                onPress={() =>
-                  Linking.openURL("https://linkedin.com/in/glisboa")
-                }
-              ></Text>
-            </Text>
-          </Text>
-          <Text style={styles.socials}>
-            <Text style={styles.logo}>
-              <Ionicons name="logo-instagram" size={18} color="black" />
-              <TouchableOpacity
-                style={styles.link}
-                onPress={() =>
-                  Linking.openURL("https://instagram.com/oglisboaaa")
-                }
-              ></TouchableOpacity>
-            </Text>
-          </Text>
-          <Text style={styles.socials}>
-            <Text style={styles.logo}>
-              <Ionicons name="logo-github" size={18} color="black" />
-              <Text
-                style={styles.link}
-                onPress={() =>
-                  Linking.openURL("https://github.com/lisboathecoder")
-                }
-              ></Text>
-            </Text>
-          </Text>
-        </View>
+        <Text style={styles.socials}>
+          <TouchableOpacity
+            style={styles.link}
+            onPress={() => Linking.openURL("https://linkedin.com/in/glisboa")}
+          >
+            <Ionicons name="logo-linkedin" size={18} color="red" />
+          </TouchableOpacity>
+        </Text>
+        <Text style={styles.socials}>
+          <TouchableOpacity
+            style={styles.link}
+            onPress={() => Linking.openURL("https://instagram.com/oglisboaaa")}
+          >
+            <Ionicons name="logo-instagram" size={18} color="red" />
+          </TouchableOpacity>
+        </Text>
+        <Text style={styles.socials}>
+          <TouchableOpacity
+            style={styles.link}
+            onPress={() => Linking.openURL("https://github.com/lisboathecoder")}
+          >
+            <Ionicons name="logo-github" size={18} color="red" />
+          </TouchableOpacity>
+        </Text>
+      </View>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
+  top: {
+    alignItems: "center",
+    marginBottom: 20,
+  },
   card: {
     gap: 5,
-    padding: 100,
+    padding: 20,
     borderRadius: 20,
     backgroundColor: "#ffffff",
+    alignItems: "center",
   },
   h3: {
-    flex: 1,
-    fontSize: 10,
+    fontSize: 14,
     textAlign: "center",
-    alignItems: "center",
     marginLeft: 5,
-    justifyContent: "center",
-    alignItems: "center",
   },
   avatar: {
-    flex: 1,
+    width: 100,
+    height: 100,
     borderRadius: 50,
     borderWidth: 1,
-    borderColor: "#000000",
-  }
+    borderColor: "#ff0000",
+    marginBottom: 10,
+  },
+  cardSocials: {
+    flexDirection: "row",
+    gap: 20,
+    marginTop: 20,
+  },
+  socials: {
+    fontSize: 14,
+  },
+  logo: {
+    marginRight: 5,
+  },
+  link: {
+    color: "#0000FF",
+    textDecorationLine: "underline",
+  },
 });

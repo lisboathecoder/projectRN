@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 24,
-    gap: 20,
+    padding: 10,
+    gap: 10,
   },
   hero: {
     alignItems: "center",
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   card: {
-    gap: 8,
+    gap: 4,
     padding: 20,
     borderRadius: 20,
     backgroundColor: "#ffffff",
