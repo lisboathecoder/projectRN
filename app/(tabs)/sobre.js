@@ -6,11 +6,12 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function AboutScreen() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.top}>
         <Ionicons name="help-circle-outline" size={100} color="red" />
         <Text styles={styles.h3}>
@@ -38,7 +39,7 @@ export default function AboutScreen() {
             style={styles.link}
             onPress={() => Linking.openURL("https://linkedin.com/in/glisboa")}
           >
-            <Ionicons name="logo-linkedin" size={18} color="red" />
+            <Ionicons name="logo-linkedin" size={30} color="red" />
           </TouchableOpacity>
         </Text>
         <Text style={styles.socials}>
@@ -46,7 +47,7 @@ export default function AboutScreen() {
             style={styles.link}
             onPress={() => Linking.openURL("https://instagram.com/oglisboaaa")}
           >
-            <Ionicons name="logo-instagram" size={18} color="red" />
+            <Ionicons name="logo-instagram" size={30} color="red" />
           </TouchableOpacity>
         </Text>
         <Text style={styles.socials}>
@@ -54,15 +55,16 @@ export default function AboutScreen() {
             style={styles.link}
             onPress={() => Linking.openURL("https://github.com/lisboathecoder")}
           >
-            <Ionicons name="logo-github" size={18} color="red" />
+            <Ionicons name="logo-github" size={30} color="red" />
           </TouchableOpacity>
         </Text>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({
   container: {
+    safeArea: 1,
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -101,9 +103,5 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginRight: 5,
-  },
-  link: {
-    color: "#0000FF",
-    textDecorationLine: "underline",
   },
 });

@@ -20,19 +20,19 @@ const api = axios.create({
   },
 });
 
-export default function HeroisListarScreen() {
-  const [herois, setHerois] = useState([]);
+export default function AnimesListarScreen() {
+  const [animes, setAnimes] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
 
-  async function buscarHerois() {
+  async function buscarAnimes() {
     setCarregando(true);
     setErro(null);
     try {
-      const resposta = await api.get("/api/herois", {
+      const resposta = await api.get("/api/animes", {
         params: { limit: 50 },
       });
-      setHerois(resposta.data.data);
+      setAnimes(resposta.data.data);
     } catch (error) {
       setErro("Não foi possível carregar dados.");
     } finally {
@@ -40,14 +40,14 @@ export default function HeroisListarScreen() {
     }
   }
   useEffect(() => {
-    buscarHerois();
+    buscarAnimes();
   }, []);
     return (
         <SafeAreaView style={styles.safeArea}>
             <ScrollView contentContainerStyle={styles.conteudo}>
                 <View style={styles.header}>
-                    <Text style={styles.tituloPagina}>Listar heróis</Text>
-                    <Text style={styles.subtitulo}>GET /api/herois</Text>
+                    <Text style={styles.tituloPagina}>Listar animes</Text>
+                    <Text style={styles.subtitulo}>GET /api/animes</Text>
                 </View>
 
                 {carregando && <ActivityIndicator style={{ marginVertical: 16 }} />}
@@ -55,13 +55,13 @@ export default function HeroisListarScreen() {
                 {erro && <Text style={styles.erro}>{erro}</Text>}
 
                 {!carregando &&
-                    herois.map((heroi) => (
-                        <View key={heroi.id} style={styles.card}>
-                            <Image source={{ uri: heroi.imageUrl }} style={styles.imagem} />
+                    animes.map((anime) => (
+                        <View key={anime.id} style={styles.card}>
+                            <Image source={{ uri: anime.imageUrl }} style={styles.imagem} />
                             <View style={styles.info}>
-                                <Text style={styles.titulo}>{heroi.title}</Text>
-                                <Text style={styles.categoria}>
-                                    {heroi.category} · {heroi.year}
+                                <Text style={styles.titulo}>{anime.title}</Text>
+                                <Text style={styles.infos}>
+                                    {anime.estudio} · {anime.genero}
                                 </Text>
                             </View>
                         </View>
@@ -72,23 +72,23 @@ export default function HeroisListarScreen() {
 }
 
 const styles = StyleSheet.create({
-    safeArea: { flex: 1, backgroundColor: "#f8fbff" }, // ocupa a tela toda, cor de fundo clara
-    conteudo: { padding: 24, paddingBottom: 48 }, // respiro nas bordas do conteúdo
-    header: { marginBottom: 16 }, // espaço abaixo do cabeçalho
-    tituloPagina: { fontSize: 24, fontWeight: "800", color: "#102542" }, // título grande e escuro
-    subtitulo: { fontSize: 14, color: "#5f6b7a", marginTop: 2 }, // texto menor e mais claro, abaixo do título
+    safeArea: { flex: 1, backgroundColor: "#f8fbff" },
+    conteudo: { padding: 24, paddingBottom: 48 },
+    header: { marginBottom: 16 },
+    tituloPagina: { fontSize: 24, fontWeight: "800", color: "#421010" },
+    subtitulo: { fontSize: 14, color: "#5f6b7a", marginTop: 2 },
 
-    erro: { color: "#c62828", marginTop: 12 }, // texto de erro em vermelho
+    erro: { color: "#c62828", marginTop: 12 },
     card: {
-        flexDirection: "row", // imagem e texto lado a lado
-        gap: 12, // espaço entre imagem e texto
-        marginTop: 12, // espaço entre um card e outro
+        flexDirection: "row",
+        gap: 12,
+        marginTop: 12,
         backgroundColor: "white",
-        borderRadius: 10, // cantos arredondados
-        overflow: "hidden", // corta a imagem nos cantos arredondados do card
+        borderRadius: 10,
+        overflow: "hidden",
     },
-    imagem: { width: 64, height: 64 }, // tamanho fixo da foto do herói
-    info: { flex: 1, justifyContent: "center", paddingRight: 12 }, // ocupa o espaço que sobra ao lado da imagem
-    titulo: { fontSize: 16, fontWeight: "700" }, // nome do herói em destaque
-    categoria: { fontSize: 13, color: "#64748b" }, // categoria/ano em cinza, menor
+    imagem: { width: 64, height: 64 },
+    info: { flex: 1, justifyContent: "center", paddingRight: 12 },
+    titulo: { fontSize: 16, fontWeight: "700" },
+    infos: { fontSize: 13, color: "#64748b" },
 });

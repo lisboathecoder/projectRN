@@ -11,13 +11,9 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios";
 
-// Em produção, uma chave de API não deveria morar direto no código do
-// app (dá pra extrair de qualquer APK/IPA instalado). Aqui, como é uma
-// API pública de estudo, deixamos direto no código pra simplificar.
-const API_KEY = "cv_zj9zQ1zMsi6PvyG-l73gbZvZupEU0ZlJgchcJcWTVEwOPpCDbaf6QwgBSNCV3kB3";
+const API_KEY =
+  "cv_zj9zQ1zMsi6PvyG-l73gbZvZupEU0ZlJgchcJcWTVEwOPpCDbaf6QwgBSNCV3kB3";
 
-// Mesma instância do axios usada na tela de listagem, com o header já
-// configurado — toda chamada feita com "api" já sai autenticada.
 const api = axios.create({
   baseURL: "https://api-ds.codeverse.dev.br",
   headers: {
@@ -25,23 +21,18 @@ const api = axios.create({
   },
 });
 
-// ---------- POST: criar um herói novo ----------
-// Payload confirmado pra este tema: title, description e imageUrl
-// (genéricos) + universo, editora e grupo_principal (específicos do
-// tema heróis). category, year, ano_de_estreia, tipo_de_heroi e
-// situacao_do_heroi aparecem na documentação, mas não fazem parte do
-// corpo que a rota de criação realmente aceita.
-export default function HeroisCriarScreen() {
+export default function AnimesCriarScreen() {
   const [titulo, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
   const [imagemUrl, setImagemUrl] = useState("");
-  const [universo, setUniverso] = useState("");
-  const [editora, setEditora] = useState("");
-  const [grupoPrincipal, setGrupoPrincipal] = useState("");
+  const [estudio, setEstudio] = useState("");
+  const [genero, setGenero] = useState("");
+  const [ano, setAno] = useState("");
+  const [baseado_em_manga, setBaseado_em_manga] = useState("");
 
   const [enviando, setEnviando] = useState(false);
 
-  async function criarHeroi() {
+  async function criarAnime() {
     if (!titulo) {
       Alert.alert("Preencha pelo menos o título.");
       return;
@@ -49,26 +40,27 @@ export default function HeroisCriarScreen() {
 
     setEnviando(true);
     try {
-      const resposta = await api.post("/api/herois", {
+      const resposta = await api.post("/api/animes", {
         title: titulo,
         description: descricao,
         imageUrl: imagemUrl,
-        universo,
-        editora,
-        grupo_principal: grupoPrincipal,
+        estudio,
+        genero: genero,
+        ano: ano,
+        baseado_em_manga: baseado_em_manga,
       });
 
-      Alert.alert("Herói criado!", resposta.data.title);
+      Alert.alert("Anime criado!", resposta.data.title);
       setTitulo("");
       setDescricao("");
       setImagemUrl("");
-      setUniverso("");
-      setEditora("");
-      setGrupoPrincipal("");
+      setEstudio("");
+      setGenero("");
+      setAno("");
     } catch (e) {
       Alert.alert(
-        "Não deu pra criar o herói",
-        "A API respondeu com erro. Confere se todos os campos estão certinhos e tenta de novo."
+        "Não deu pra criar o anime",
+        "A API respondeu com erro. Confere se todos os campos estão certinhos e tenta de novo.",
       );
     } finally {
       setEnviando(false);
@@ -79,8 +71,8 @@ export default function HeroisCriarScreen() {
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.conteudo}>
         <View style={styles.header}>
-          <Text style={styles.tituloPagina}>Criar herói</Text>
-          <Text style={styles.subtitulo}>POST /api/herois</Text>
+          <Text style={styles.tituloPagina}>Criar anime</Text>
+          <Text style={styles.subtitulo}>POST /api/animes</Text>
         </View>
 
         <Text style={styles.rotulo}>Título</Text>
@@ -88,7 +80,7 @@ export default function HeroisCriarScreen() {
           style={styles.campo}
           value={titulo}
           onChangeText={setTitulo}
-          placeholder="Ex: Batman"
+          placeholder="Ex: Naruto"
         />
 
         <Text style={styles.rotulo}>Descrição</Text>
@@ -96,7 +88,7 @@ export default function HeroisCriarScreen() {
           style={styles.campo}
           value={descricao}
           onChangeText={setDescricao}
-          placeholder="Ex: Herói vigilante de Gotham City."
+          placeholder="Ex: Gennin da vila da folha"
         />
 
         <Text style={styles.rotulo}>URL da imagem</Text>
@@ -104,37 +96,50 @@ export default function HeroisCriarScreen() {
           style={styles.campo}
           value={imagemUrl}
           onChangeText={setImagemUrl}
-          placeholder="Ex: https://exemplo.com/batman.jpg"
+          placeholder="Ex: https://exemplo.com/naruto.jpg"
         />
 
-        <Text style={styles.secao}>Campos específicos do tema heróis</Text>
+        <Text style={styles.secao}>Campos específicos do tema animes</Text>
 
-        <Text style={styles.rotulo}>Universo</Text>
+        <Text style={styles.rotulo}>Estudio</Text>
         <TextInput
           style={styles.campo}
-          value={universo}
-          onChangeText={setUniverso}
-          placeholder="Ex: DC"
+          value={estudio}
+          onChangeText={setEstudio}
+          placeholder="Ex: Toei Animation"
         />
 
-        <Text style={styles.rotulo}>Editora</Text>
+        <Text style={styles.rotulo}>Gênero</Text>
         <TextInput
           style={styles.campo}
-          value={editora}
-          onChangeText={setEditora}
-          placeholder="Ex: DC Comics"
+          value={genero}
+          onChangeText={setGenero}
+          placeholder="Ex: Shounen"
         />
-
-        <Text style={styles.rotulo}>Grupo principal</Text>
+        <Text style={styles.rotulo}>Ano de lançamento</Text>
         <TextInput
           style={styles.campo}
-          value={grupoPrincipal}
-          onChangeText={setGrupoPrincipal}
-          placeholder="Ex: Batfamily"
+          value={ano}
+          onChangeText={setAno}
+          placeholder="Ex: 2026"
         />
 
-        <Pressable style={styles.botao} onPress={criarHeroi} disabled={enviando}>
-          <Text style={styles.botaoTexto}>{enviando ? "Enviando..." : "Criar herói"}</Text>
+        <Text style={styles.rotulo}>Baseado em mangá?</Text>
+        <TextInput
+          style={styles.campo}
+          value={ano}
+          onChangeText={setBaseado_em_manga}
+          placeholder="Ex: Sim"
+        />
+
+        <Pressable
+          style={styles.botao}
+          onPress={criarAnime}
+          disabled={enviando}
+        >
+          <Text style={styles.botaoTexto}>
+            {enviando ? "Enviando..." : "Criar anime"}
+          </Text>
         </Pressable>
       </ScrollView>
     </SafeAreaView>
@@ -145,20 +150,25 @@ const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: "#f8fbff" },
   conteudo: { padding: 24, paddingBottom: 48 },
   header: { marginBottom: 16 },
-  tituloPagina: { fontSize: 24, fontWeight: "800", color: "#102542" },
+  tituloPagina: { fontSize: 24, fontWeight: "800", color: "#421010" },
   subtitulo: { fontSize: 14, color: "#5f6b7a", marginTop: 2 },
   secao: {
     fontSize: 14,
     fontWeight: "700",
-    color: "#102542",
+    color: "#421010",
     marginTop: 8,
     marginBottom: 8,
   },
 
-  rotulo: { fontSize: 13, fontWeight: "600", color: "#334155", marginBottom: 4 },
+  rotulo: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: "#334155",
+    marginBottom: 4,
+  },
   campo: {
     borderWidth: 1,
-    borderColor: "#cbd5e1",
+    borderColor: "#e1cbcb",
     borderRadius: 8,
     paddingHorizontal: 12,
     paddingVertical: 10,
@@ -166,7 +176,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   botao: {
-    backgroundColor: "#1565c0",
+    backgroundColor: "#c01515",
     paddingVertical: 14,
     borderRadius: 10,
     alignItems: "center",

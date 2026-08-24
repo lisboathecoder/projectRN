@@ -9,6 +9,7 @@ export default function TabsLayout() {
         tabBarLabelStyle: {
           fontSize: 12,
           fontWeight: "600",
+          
         },
       }}
     >
@@ -22,15 +23,15 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="post"
         options={{
-          title: "Post",
-          headerTitle: "Api do codeverse",
+          title: "Criar",
+          headerTitle: "Criar Animes",
         }}
       />
             <Tabs.Screen
         name="get"
         options={{
-          title: "Get",
-          headerTitle: "Api do codeverse",
+          title: "Buscar",
+          headerTitle: "Buscar Animes",
         }}
       />
             <Tabs.Screen
