@@ -14,20 +14,20 @@ export default function HomeScreen() {
             style={styles.logo}
             resizeMode="contain"
           />
-          <Text style={styles.eyebrow}>Resenha Native + Expo Resenha</Text>
-          <Text style={styles.title}>Seu app já nasce resenhado</Text>
+          <Text style={styles.eyebrow}>API de Animes</Text>
+          <Text style={styles.title}>Anime Nexus</Text>
           <Text style={styles.description}>
-            Estrutura pronta para o aluno resenhar em componentes, navegação e
-            lógica de negócio desde a primeira aula.
+            Um app de exemplo que consome a API de animes da Codeverse, com
+            rotas, abas e modal de exemplo.
           </Text>
         </View>
 
         <View style={styles.card}>
-          <Text style={styles.cardTitle}>O que vem configurado</Text>
-          <Text style={styles.cardItem}>• JavaScript habilitado</Text>
+          <Text style={styles.cardTitle}>O que temos no aplicativo?</Text>
           <Text style={styles.cardItem}>• Rotas com expo-router</Text>
-          <Text style={styles.cardItem}>• Abas e modal de exemplo</Text>
-          <Text style={styles.cardItem}>• Scripts para Android, iOS e Web</Text>
+          <Text style={styles.cardItem}>• Abas</Text>
+          <Text style={styles.cardItem}>• Modal de exemplo</Text>
+          <Text style={styles.cardItem}>• Componentes reutilizáveis</Text>
         </View>
 
         <Link href="/modal" asChild>
@@ -41,72 +41,72 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#f8fbff",
-  },
-  container: {
-    flex: 1,
-    padding: 10,
-    gap: 10,
-  },
-  hero: {
-    alignItems: "center",
-    gap: 10,
-    padding: 24,
-    borderRadius: 24,
-    backgroundColor: "#fe0f0f",
-  },
-  logo: {
-    width: 120,
-    height: 120,
-    marginBottom: 4,
-  },
-  eyebrow: {
-    fontSize: 13,
-    fontWeight: "700",
-    letterSpacing: 1,
-    textTransform: "uppercase",
-    color: "#d0e2ff",
-    textAlign: "center",
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: "800",
-    color: "#ffffff",
-    textAlign: "center",
-  },
-  description: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: "#edf5ff",
-    textAlign: "center",
-  },
-  card: {
-    gap: 4,
-    padding: 20,
-    borderRadius: 20,
-    backgroundColor: "#ffffff",
-  },
-  cardTitle: {
-    fontSize: 18,
-    fontWeight: "700",
-    color: "#102542",
-  },
-  cardItem: {
-    fontSize: 15,
-    color: "#334e68",
-  },
-  button: {
-    paddingVertical: 16,
-    paddingHorizontal: 20,
-    borderRadius: 16,
-    alignItems: "center",
-    backgroundColor: "#102542",
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: "700",
-    color: "#ffffff",
-  },
+    safeArea: {
+        flex: 1,
+        backgroundColor: '#000000',
+    },
+    container: {
+        flex: 1,
+        padding: 10,
+        gap: 10,
+    },
+    hero: {
+        alignItems: 'center',
+        gap: 10,
+        padding: 24,
+        borderRadius: 24,
+        backgroundColor: '#b81c1c',
+    },
+    logo: {
+        width: 120,
+        height: 120,
+        marginBottom: 4,
+    },
+    eyebrow: {
+        fontSize: 13,
+        fontWeight: '700',
+        letterSpacing: 1,
+        textTransform: 'uppercase',
+        color: '#d0e2ff',
+        textAlign: 'center',
+    },
+    title: {
+        fontSize: 32,
+        fontWeight: '800',
+        color: '#ffffff',
+        textAlign: 'center',
+    },
+    description: {
+        fontSize: 16,
+        lineHeight: 24,
+        color: '#edf5ff',
+        textAlign: 'center',
+    },
+    card: {
+        gap: 4,
+        padding: 20,
+        borderRadius: 20,
+        backgroundColor: '#ffffff',
+    },
+    cardTitle: {
+        fontSize: 18,
+        fontWeight: '700',
+        color: '#102542',
+    },
+    cardItem: {
+        fontSize: 15,
+        color: '#334e68',
+    },
+    button: {
+        paddingVertical: 16,
+        paddingHorizontal: 20,
+        borderRadius: 16,
+        alignItems: 'center',
+        backgroundColor: '#b81c1c',
+    },
+    buttonText: {
+        fontSize: 16,
+        fontWeight: '700',
+        color: '#ffffff',
+    },
 });

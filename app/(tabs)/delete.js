@@ -12,7 +12,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 
-const API_KEY = 'cv_D8ljS9Qd0DZntaavU1Fvf0UoNyfYjiH8EAtykKdVWV9RsD2beBn1yD2eMWeiLrXu';
+const API_KEY = 'cv_TQBPOM6hYvO_NCzpyh8A0Cr_l6wQFo71wH3lHewIHs6bo_OaDXjaLNAGqtld51HK';
 
 const api = axios.create({
     baseURL: 'https://api-ds.codeverse.dev.br',
@@ -23,13 +23,8 @@ const api = axios.create({
 
 const API_BASE_URL = 'https://api-ds.codeverse.dev.br';
 
-function imagemCompleta(url) {
-    if (!url) return null;
-    return url.startsWith('http') ? url : `${API_BASE_URL}${url}`;
-}
-
-export default function AnimesExcluirScreen() {
-    const [animes, setAnimes] = useState([]);
+export default function AnimeExcluirScreen() {
+    const [anime, setAnime] = useState([]);
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState(null);
     const [excluindoId, setExcluindoId] = useState(null);
@@ -41,9 +36,9 @@ export default function AnimesExcluirScreen() {
             const resposta = await api.get('/api/animes', {
                 params: { limit: 50 },
             });
-            setAnimes(Array.isArray(resposta.data.data) ? resposta.data.data : []);
-        } catch (error) {
-            setErro('Não foi possível carregar os animes.');
+            setAnime(resposta.data.data);
+        } catch (e) {
+            setErro('Não foi possível carregar os animes. Tenta de novo em instantes.');
         } finally {
             setCarregando(false);
         }
@@ -52,21 +47,6 @@ export default function AnimesExcluirScreen() {
     useEffect(() => {
         buscarAnimes();
     }, []);
-
-    async function excluirAnime(id) {
-        setExcluindoId(id);
-        try {
-            await api.delete(`/api/animes/${id}`);
-            setAnimes((atual) => atual.filter((item) => item.id !== id));
-        } catch (error) {
-            Alert.alert(
-                'Não deu pra excluir o anime',
-                'A API respondeu com erro. Tenta de novo em instantes.',
-            );
-        } finally {
-            setExcluindoId(null);
-        }
-    }
 
     function confirmarExclusao(anime) {
         Alert.alert(
@@ -83,6 +63,22 @@ export default function AnimesExcluirScreen() {
         );
     }
 
+    async function excluirAnime(id) {
+        setExcluindoId(id);
+        try {
+            await api.delete(`/api/animes/${id}`);
+
+            setAnime((atual) => atual.filter((item) => item.id !== id));
+        } catch (e) {
+            Alert.alert(
+                'Não deu pra excluir o anime',
+                'A API respondeu com erro. Tenta de novo em instantes.',
+            );
+        } finally {
+            setExcluindoId(null);
+        }
+    }
+
     return (
         <SafeAreaView style={styles.safeArea}>
             <ScrollView contentContainerStyle={styles.conteudo}>
@@ -95,31 +91,21 @@ export default function AnimesExcluirScreen() {
                 {erro && <Text style={styles.erro}>{erro}</Text>}
 
                 {!carregando &&
-                    animes.map((anime) => (
-                        <View key={anime.id} style={styles.card}>
-                            {imagemCompleta(anime.imageUrl) ? (
-                                <Image
-                                    source={{ uri: imagemCompleta(anime.imageUrl) }}
-                                    style={styles.imagem}
-                                />
-                            ) : (
-                                <View style={styles.imagemSemFoto} />
-                            )}
-
+                    anime.map((item) => (
+                        <View key={item.id} style={styles.card}>
+                            <Image source={{ uri: item.imageUrl }} style={styles.imagem} />
                             <View style={styles.info}>
-                                <Text style={styles.titulo}>{anime.title}</Text>
+                                <Text style={styles.titulo}>{item.title}</Text>
                                 <Text style={styles.categoria}>
-                                    {anime.status} · {anime.estudio}
+                                    {item.estudio} · {item.genero}
                                 </Text>
-                                <Text style={styles.genero}>{anime.genero}</Text>
                             </View>
-
                             <Pressable
                                 style={styles.botaoExcluir}
-                                onPress={() => confirmarExclusao(anime)}
-                                disabled={excluindoId === anime.id}>
+                                onPress={() => confirmarExclusao(item)}
+                                disabled={excluindoId === item.id}>
                                 <Text style={styles.botaoExcluirTexto}>
-                                    {excluindoId === anime.id ? '...' : 'Excluir'}
+                                    {excluindoId === item.id ? '...' : 'Excluir'}
                                 </Text>
                             </Pressable>
                         </View>
@@ -129,14 +115,34 @@ export default function AnimesExcluirScreen() {
     );
 }
 
-const styles = StyleSheet.create({
-    safeArea: { flex: 1, backgroundColor: '#f8fbff' },
-    conteudo: { padding: 24, paddingBottom: 48 },
-    header: { marginBottom: 16 },
-    tituloPagina: { fontSize: 24, fontWeight: '800', color: '#102542' },
-    subtitulo: { fontSize: 14, color: '#5f6b7a', marginTop: 2 },
 
-    erro: { color: '#c62828', marginTop: 12 },
+const styles = StyleSheet.create({
+    safeArea: {
+        flex: 1,
+        backgroundColor: '#000000',
+    },
+    conteudo: {
+        padding: 24,
+        paddingBottom: 48,
+    },
+    header: {
+        marginBottom: 16,
+    },
+    tituloPagina: {
+        fontSize: 24,
+        fontWeight: '800',
+        color: '#fafafa',
+    },
+    subtitulo: {
+        fontSize: 14,
+        color: '#913232',
+        marginTop: 2,
+    },
+
+    erro: {
+        color: '#c62828',
+        marginTop: 12,
+    },
     card: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -147,22 +153,38 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         paddingRight: 12,
     },
-    imagem: { width: 64, height: 64 },
+    imagem: {
+        width: 64,
+        height: 64,
+    },
     imagemSemFoto: {
         width: 64,
         height: 64,
         backgroundColor: '#e2e8f0',
     },
-    info: { flex: 1, justifyContent: 'center', paddingRight: 12 },
-    titulo: { fontSize: 16, fontWeight: '700' },
-    categoria: { fontSize: 13, color: '#64748b' },
-    genero: { fontSize: 13, color: '#64748b', marginTop: 2 },
-
+    info: {
+        flex: 1,
+        justifyContent: 'center',
+        paddingRight: 12,
+    },
+    titulo: {
+        fontSize: 16,
+        fontWeight: '700',
+    },
+    categoria: {
+        fontSize: 13,
+        color: '#64748b',
+        marginTop: 2,
+    },
     botaoExcluir: {
         backgroundColor: '#c62828',
         paddingHorizontal: 14,
         paddingVertical: 8,
         borderRadius: 8,
     },
-    botaoExcluirTexto: { color: 'white', fontWeight: '700', fontSize: 13 },
+    botaoExcluirTexto: {
+        color: 'white',
+        fontWeight: '700',
+        fontSize: 13,
+    },
 });

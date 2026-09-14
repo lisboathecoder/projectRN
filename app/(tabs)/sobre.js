@@ -14,9 +14,6 @@ export default function AboutScreen() {
     <SafeAreaView style={styles.container}>
       <View style={styles.top}>
         <Ionicons name="help-circle-outline" size={100} color="red" />
-        <Text styles={styles.h3}>
-          Esse projeto é o primeiro de mobile no Terceiro Semestre!
-        </Text>
       </View>
       <View style={styles.card}>
         <Image
@@ -63,45 +60,53 @@ export default function AboutScreen() {
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    safeArea: 1,
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  top: {
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  card: {
-    gap: 5,
-    padding: 20,
-    borderRadius: 20,
-    backgroundColor: "#ffffff",
-    alignItems: "center",
-  },
-  h3: {
-    fontSize: 14,
-    textAlign: "center",
-    marginLeft: 5,
-  },
-  avatar: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    borderWidth: 1,
-    borderColor: "#ff0000",
-    marginBottom: 10,
-  },
-  cardSocials: {
-    flexDirection: "row",
-    gap: 20,
-    marginTop: 20,
-  },
-  socials: {
-    fontSize: 14,
-  },
-  logo: {
-    marginRight: 5,
-  },
+    container: {
+        safeArea: 1,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#000000',
+    },
+    top: {
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    card: {
+        gap: 5,
+        padding: 20,
+        borderRadius: 20,
+        backgroundColor: '#ffffff',
+        alignItems: 'center',
+    },
+    h3: {
+        fontSize: 14,
+        textAlign: 'center',
+        marginLeft: 5,
+        color: '#000000',
+    },
+    h2: {
+        fontSize: 16,
+        textAlign: 'center',
+        marginLeft: 5,
+        color: '#ffffff',
+    },
+    avatar: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        borderWidth: 1,
+        borderColor: '#ff0000',
+        marginBottom: 10,
+    },
+    cardSocials: {
+        flexDirection: 'row',
+        gap: 20,
+        marginTop: 20,
+    },
+    socials: {
+        fontSize: 14,
+    },
+    logo: {
+        marginRight: 5,
+    },
 });

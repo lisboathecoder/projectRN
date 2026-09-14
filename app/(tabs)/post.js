@@ -147,39 +147,39 @@ export default function AnimesCriarScreen() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: "#f8fbff" },
-  conteudo: { padding: 24, paddingBottom: 48 },
-  header: { marginBottom: 16 },
-  tituloPagina: { fontSize: 24, fontWeight: "800", color: "#421010" },
-  subtitulo: { fontSize: 14, color: "#5f6b7a", marginTop: 2 },
-  secao: {
-    fontSize: 14,
-    fontWeight: "700",
-    color: "#421010",
-    marginTop: 8,
-    marginBottom: 8,
-  },
+    safeArea: { flex: 1, backgroundColor: '#000000' },
+    conteudo: { padding: 24, paddingBottom: 48 },
+    header: { marginBottom: 16 },
+    tituloPagina: { fontSize: 24, fontWeight: '800', color: '#fafafa' },
+    subtitulo: { fontSize: 14, color: '#913232', marginTop: 2 },
+    secao: {
+        fontSize: 14,
+        fontWeight: '700',
+        color: '#913232',
+        marginTop: 8,
+        marginBottom: 8,
+    },
 
-  rotulo: {
-    fontSize: 13,
-    fontWeight: "600",
-    color: "#334155",
-    marginBottom: 4,
-  },
-  campo: {
-    borderWidth: 1,
-    borderColor: "#e1cbcb",
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    marginBottom: 12,
-    backgroundColor: "white",
-  },
-  botao: {
-    backgroundColor: "#c01515",
-    paddingVertical: 14,
-    borderRadius: 10,
-    alignItems: "center",
-  },
-  botaoTexto: { color: "white", fontWeight: "700" },
+    rotulo: {
+        fontSize: 13,
+        fontWeight: '600',
+        color: '#fafafa',
+        marginBottom: 4,
+    },
+    campo: {
+        borderWidth: 1,
+        borderColor: '#e1cbcb',
+        borderRadius: 8,
+        paddingHorizontal: 12,
+        paddingVertical: 10,
+        marginBottom: 12,
+        backgroundColor: 'white',
+    },
+    botao: {
+        backgroundColor: '#c01515',
+        paddingVertical: 14,
+        borderRadius: 10,
+        alignItems: 'center',
+    },
+    botaoTexto: { color: 'white', fontWeight: '700' },
 });

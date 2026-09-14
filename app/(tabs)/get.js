@@ -10,9 +10,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios"; // lib pra callouts http
 
-const API_KEY =
-  "cv_zj9zQ1zMsi6PvyG-l73gbZvZupEU0ZlJgchcJcWTVEwOPpCDbaf6QwgBSNCV3kB3"; // Api do codeverse
-
+const API_KEY = "cv_TQBPOM6hYvO_NCzpyh8A0Cr_l6wQFo71wH3lHewIHs6bo_OaDXjaLNAGqtld51HK";
 const api = axios.create({
   baseURL: "https://api-ds.codeverse.dev.br",
   headers: {
@@ -63,6 +61,9 @@ export default function AnimesListarScreen() {
                                 <Text style={styles.infos}>
                                     {anime.estudio} · {anime.genero}
                                 </Text>
+                                <Text style={styles.infos}>
+                                    {anime.descricao}
+                                </Text>
                             </View>
                         </View>
                     ))}
@@ -72,23 +73,23 @@ export default function AnimesListarScreen() {
 }
 
 const styles = StyleSheet.create({
-    safeArea: { flex: 1, backgroundColor: "#f8fbff" },
+    safeArea: { flex: 1, backgroundColor: '#020202' },
     conteudo: { padding: 24, paddingBottom: 48 },
     header: { marginBottom: 16 },
-    tituloPagina: { fontSize: 24, fontWeight: "800", color: "#421010" },
-    subtitulo: { fontSize: 14, color: "#5f6b7a", marginTop: 2 },
+    tituloPagina: { fontSize: 24, fontWeight: '800', color: '#fafafa' },
+    subtitulo: { fontSize: 14, color: '#913232', marginTop: 2 },
 
-    erro: { color: "#c62828", marginTop: 12 },
+    erro: { color: '#c62828', marginTop: 12 },
     card: {
-        flexDirection: "row",
+        flexDirection: 'row',
         gap: 12,
         marginTop: 12,
-        backgroundColor: "white",
+        backgroundColor: 'white',
         borderRadius: 10,
-        overflow: "hidden",
+        overflow: 'hidden',
     },
     imagem: { width: 64, height: 64 },
-    info: { flex: 1, justifyContent: "center", paddingRight: 12 },
-    titulo: { fontSize: 16, fontWeight: "700" },
-    infos: { fontSize: 13, color: "#64748b" },
+    info: { flex: 1, justifyContent: 'center', paddingRight: 12 },
+    titulo: { fontSize: 16, fontWeight: '700' },
+    infos: { fontSize: 13, color: '#64748b' },
 });
