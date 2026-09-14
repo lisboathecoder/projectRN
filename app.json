@@ -4,7 +4,8 @@
     "slug": "projectrn",
     "scheme": "projectrn",
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-status-bar"
     ],
     "experiments": {
       "typedRoutes": true
