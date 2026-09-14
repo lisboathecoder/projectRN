@@ -31,8 +31,8 @@ export default function AnimesEditarScreen() {
     const [imagemUrl, setImagemUrl] = useState('');
     const [estudio, setEstudio] = useState('');
     const [genero, setGenero] = useState('');
-    const [ano, setAno] = useState('');
-    const [baseado_em_manga, setBaseado_em_manga] = useState('');
+    const [ano_lancamento, setAno_lancamento] = useState('');
+    const [numero_de_episodios, setNumero_de_episodios] = useState('');
 
     async function buscarAnimes() {
         setCarregando(true);
@@ -59,8 +59,8 @@ export default function AnimesEditarScreen() {
         setImagemUrl(anime.imageUrl ?? '');
         setEstudio(anime.estudio ?? '');
         setGenero(anime.genero ?? '');
-        setAno(anime.ano ?? '');
-        setBaseado_em_manga(anime.baseado_em_manga ?? '');
+        setAno_lancamento(anime.ano_lancamento ?? '');
+        setNumero_de_episodios(anime.numero_de_episodios ?? '');
     }
 
     async function salvarEdicao() {
@@ -77,8 +77,8 @@ export default function AnimesEditarScreen() {
                 imageUrl: imagemUrl,
                 estudio: estudio,
                 genero: genero,
-                ano: ano,
-                baseado_em_manga: baseado_em_manga,
+                ano: ano_lancamento,
+                numero_de_episodios: numero_de_episodios,
             });
 
             Alert.alert('Anime atualizado!', resposta.data.data.title);
@@ -161,21 +161,21 @@ export default function AnimesEditarScreen() {
                             placeholder="Ex: Ação"
                         />
 
-                        <Text style={styles.rotulo}>Ano</Text>
+                        <Text style={styles.rotulo}>Ano de lançamento</Text>
                         <TextInput
                             style={styles.campo}
-                            value={String(ano)}
-                            onChangeText={setAno}
+                            value={String(ano_lancamento)}
+                            onChangeText={setAno_lancamento}
                             placeholder="Ex: 2026"
                             keyboardType="numeric"
                         />
 
-                        <Text style={styles.rotulo}>Baseado em mangá</Text>
+                        <Text style={styles.rotulo}>Número de episódios</Text>
                         <TextInput
                             style={styles.campo}
-                            value={String(baseado_em_manga)}
-                            onChangeText={setBaseado_em_manga}
-                            placeholder="Sim ou não"
+                            value={numero_de_episodios}
+                            onChangeText={setNumero_de_episodios}
+                            placeholder="Ex: 24"
                         />
 
                         <Pressable style={styles.botao} onPress={salvarEdicao} disabled={salvando}>
@@ -191,14 +191,37 @@ export default function AnimesEditarScreen() {
 }
 
 const styles = StyleSheet.create({
-    safeArea: { flex: 1, backgroundColor: '#070606' },
-    conteudo: { padding: 24, paddingBottom: 48 },
-    header: { marginBottom: 16 },
-    tituloPagina: { fontSize: 24, fontWeight: '800', color: '#fafafa' },
-    subtitulo: { fontSize: 14, color: '#913232', marginTop: 2 },
+    safeArea: {
+        flex: 1,
+        backgroundColor: '#070606',
+    },
+    conteudo: {
+        padding: 24,
+        paddingBottom: 48,
+    },
+    header: {
+        marginBottom: 16,
+    },
+    tituloPagina: {
+        fontSize: 24,
+        fontWeight: '800',
+        color: '#fafafa',
+    },
+    subtitulo: {
+        fontSize: 14,
+        color: '#da1a1a',
+        marginTop: 2,
+    },
 
-    instrucao: { fontSize: 14, color: '#fafafa', marginBottom: 8 },
-    erro: { color: '#fafafa', marginTop: 12 },
+    instrucao: {
+        fontSize: 14,
+        color: '#fafafa',
+        marginBottom: 8,
+    },
+    erro: {
+        color: '#da1a1a',
+        marginTop: 12,
+    },
 
     linha: {
         flexDirection: 'row',
@@ -210,7 +233,11 @@ const styles = StyleSheet.create({
         paddingVertical: 14,
         marginBottom: 8,
     },
-    linhaTitulo: { fontSize: 15, fontWeight: '700', color: '#102542' },
+    linhaTitulo: {
+        fontSize: 15,
+        fontWeight: '700',
+        color: '#102542',
+    },
     linhaSeta: {
         fontSize: 13,
         fontWeight: '700',
@@ -221,10 +248,20 @@ const styles = StyleSheet.create({
         borderRadius: 8,
     },
 
-    voltar: { marginBottom: 16 },
-    voltarTexto: { color: '#c62828', fontWeight: '700' },
+    voltar: {
+        marginBottom: 16,
+    },
+    voltarTexto: {
+        color: '#c62828',
+        fontWeight: '700',
+    },
 
-    rotulo: { fontSize: 13, fontWeight: '600', color: '#334155', marginBottom: 4 },
+    rotulo: {
+        fontSize: 13,
+        fontWeight: '600',
+        color: '#da1a1a',
+        marginBottom: 4,
+    },
 
     campo: {
         borderWidth: 1,
@@ -238,7 +275,7 @@ const styles = StyleSheet.create({
     botao: {
         backgroundColor: '#c62828',
         paddingVertical: 14,
-        borderRadius: 10,
+        borderRadius: 8,
         alignItems: 'center',
         marginTop: 4,
     },

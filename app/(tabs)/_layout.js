@@ -47,6 +47,16 @@ export default function TabsLayout() {
                 }}
             />
             <Tabs.Screen
+                name="getbyid"
+                options={{
+                    title: 'ID',
+                    headerTitle: 'Buscar Anime por ID',
+                    tabBarIcon: ({ color, size }) => (
+                        <Ionicons name="information-circle" color={color} size={size} />
+                    ),
+                }}
+            />
+            <Tabs.Screen
                 name="post"
                 options={{
                     title: 'Criar',
@@ -80,7 +90,7 @@ export default function TabsLayout() {
                 name="sobre"
                 options={{
                     title: 'Sobre',
-                    headerTitle: 'Sobre',
+                    headerTitle: 'Sobre o desenvolvedor',
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons name="information-circle" color={color} size={size} />
                     ),

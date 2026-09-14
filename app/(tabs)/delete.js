@@ -21,8 +21,6 @@ const api = axios.create({
     },
 });
 
-const API_BASE_URL = 'https://api-ds.codeverse.dev.br';
-
 export default function AnimeExcluirScreen() {
     const [anime, setAnime] = useState([]);
     const [carregando, setCarregando] = useState(true);
@@ -97,7 +95,10 @@ export default function AnimeExcluirScreen() {
                             <View style={styles.info}>
                                 <Text style={styles.titulo}>{item.title}</Text>
                                 <Text style={styles.categoria}>
-                                    {item.estudio} · {item.genero}
+                                    {item.estudio} · {item.ano_lancamento}· {item.genero}
+                                </Text>
+                                <Text style={styles.infos}>
+                                    Número de episódios: {item.numero_episodios}
                                 </Text>
                             </View>
                             <Pressable
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     },
     subtitulo: {
         fontSize: 14,
-        color: '#913232',
+        color: '#da1a1a',
         marginTop: 2,
     },
 
@@ -171,9 +172,9 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '700',
     },
-    categoria: {
+    infos: {
         fontSize: 13,
-        color: '#64748b',
+        color: '#913232',
         marginTop: 2,
     },
     botaoExcluir: {
