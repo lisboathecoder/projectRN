@@ -32,7 +32,7 @@ export default function HomeScreen() {
 
         <Link href="/modal" asChild>
           <Pressable style={styles.button}>
-            <Text style={styles.buttonText}>Abrir modal de exemplo</Text>
+            <Text style={styles.buttonText}>Explore interações!</Text>
           </Pressable>
         </Link>
       </View>

@@ -180,8 +180,8 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     imagem: {
-        width: 88,
-        height: 88,
+        width: 128,
+        height: 128,
     },
     info: {
         flex: 1,

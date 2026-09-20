@@ -14,7 +14,6 @@ export default function TabsLayout() {
                 },
                 headerTintColor: '#fcfdfd',
                 tabBarActiveBackgroundColor: '#000000',
-                tabBarActiveBackgroundColor: '#000000',
                 tabBarInactiveBackgroundColor: '#000000',
                 tabBarActiveTintColor: '#fe0f0f',
                 tabBarInactiveTintColor: '#fcfdfd',
@@ -23,7 +22,8 @@ export default function TabsLayout() {
                 },
                 tabBarLabelStyle: {
                     fontSize: 12,
-                    fontWeight: '600',
+                  fontWeight: '600',
+                  marginBottom: 1,
                 },
             }}>
             <Tabs.Screen
@@ -92,7 +92,7 @@ export default function TabsLayout() {
                     title: 'Sobre',
                     headerTitle: 'Sobre o desenvolvedor',
                     tabBarIcon: ({ color, size }) => (
-                        <Ionicons name="information-circle" color={color} size={size} />
+                        <Ionicons name="person" color={color} size={size} />
                     ),
                 }}
             />

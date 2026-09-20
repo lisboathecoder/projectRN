@@ -1,16 +1,66 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Pressable, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Link } from "expo-router";
 
 export default function ModalScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Modal pronta para uso</Text>
-        <Text style={styles.description}>
-          Use esta tela para mostrar detalhes, formulários ou ações rápidas sem
-          sair do fluxo principal.
-        </Text>
+      <ScrollView>
+        <View style={styles.container}>
+          <Text style={styles.title}>
+            Crie, Busque, Exclue e Atualize!
+          </Text>
+          <Text style={styles.description}>
+            Use as rotas de exemplo para interagir com a API de animes da Codeverse. 
+            {"\n"}Você pode listar, buscar por ID, deletar e atualizar animes.
+          </Text>
       </View>
+
+      <View style={styles.crud}>
+        <Link href="/get" asChild>
+          <Pressable style={styles.button}>
+              <Text style={styles.buttonText}>
+                Listar todos os Animes
+              </Text>
+          </Pressable>
+        </Link>
+        <Link href="/getbyid" asChild>
+          <Pressable style={styles.button}>
+              <Text style={styles.buttonText}>
+                Buscar um anime por id
+              </Text>
+          </Pressable>
+        </Link>
+        <Link href="/post" asChild>
+          <Pressable style={styles.button}>
+              <Text style={styles.buttonText}>
+                Criar um novo Anime
+              </Text>
+          </Pressable>
+        </Link>
+        <Link href="/update" asChild>
+          <Pressable style={styles.button}>
+              <Text style={styles.buttonText}>
+                Atualizar informações de um Anime
+              </Text>
+          </Pressable>
+        </Link>
+        <Link href="/delete" asChild>
+          <Pressable style={styles.button}>
+              <Text style={styles.buttonText}>
+                Excluir um Anime
+              </Text>
+          </Pressable>
+        </Link>
+        <Link href="/" asChild>
+          <Pressable style={styles.buttonHome}>
+              <Text style={styles.buttonTextHome}>
+                Voltar para a Home
+              </Text>
+          </Pressable>
+        </Link>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -18,7 +68,7 @@ export default function ModalScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#f3f7ff",
+    backgroundColor: "#000000",
   },
   container: {
     flex: 1,
@@ -29,11 +79,38 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: "700",
-    color: "#421010",
+    color: "#fafafa",
   },
   description: {
     fontSize: 16,
     lineHeight: 24,
-    color: "#683333",
+    color: "#da1a1a",
+  },
+  button: {
+    backgroundColor: "#b81c1c",
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  crud: {
+    flex: 1,
+    padding: 24,
+    gap: 12,
+  },
+  buttonText: {
+    color: "#ffffff",
+    fontWeight: "bold",
+  },
+  buttonHome: {
+    backgroundColor: "#ffffff",
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  buttonTextHome: {
+    color: "#b81c1c",
+    fontWeight: "bold",
   },
 });
