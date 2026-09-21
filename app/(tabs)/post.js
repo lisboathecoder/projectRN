@@ -23,10 +23,13 @@ export default function AnimesCriarScreen() {
 
     async function criarAnime() {
         if (!titulo) {
-            Alert.alert('Preencha pelo menos o título.');
+            Alert.alert('Preencha pelo menos o título');
             return;
+        } else if (titulo.length > 20) {
+             Alert.alert('Diminua o tamanho do nome');
+             return;
         }
-        if (numero_episodios < 1) {
+        if (numero_episodios < 1 || isNaN(numero_episodios)) {
             Alert.alert('O número de episódios precisa ser maior que 0.');
             return;
         }
