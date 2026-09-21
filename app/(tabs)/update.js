@@ -29,7 +29,7 @@ export default function AnimesEditarScreen() {
     const [erro, setErro] = useState(null);
     const [salvando, setSalvando] = useState(false);
     const [titulo, setTitulo] = useState('');
-    const [imagemUrl, setImagemUrl] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
     const [estudio, setEstudio] = useState('');
     const [genero, setGenero] = useState('');
     const [ano_lancamento, setAno_lancamento] = useState('');
@@ -57,7 +57,7 @@ export default function AnimesEditarScreen() {
     function selecionarAnime(anime) {
         setSelecionado(anime);
         setTitulo(anime.title ?? '');
-        setImagemUrl(anime.imageUrl ?? '');
+        setImageUrl(anime.imageUrl ?? '');
         setEstudio(anime.estudio ?? '');
         setGenero(anime.genero ?? '');
         setAno_lancamento(anime.ano_lancamento ?? '');
@@ -70,16 +70,32 @@ export default function AnimesEditarScreen() {
             Alert.alert('Preencha pelo menos o título.');
             return;
         }
+        if (numero_episodios < 1) {
+            Alert.alert('O número de episódios precisa ser maior que 0.');
+            return;
+        }
 
+        if (isNaN(ano_lancamento) || ano_lancamento.length !== 4) {
+            Alert.alert('Erro no ano de lançamento', 'precisa ser um número com 4 dígitos.');
+            return;
+        }
+
+        if (!imageUrl) {
+            Alert.alert('Erro na imagem', 'Imagem inválida ou campo não preenchido');
+        }
+
+        if (!genero || !estudio) {
+            Alert.alert('Erro nos campos', 'Campos não preenchidos');
+        }
         setSalvando(true);
         try {
             const resposta = await api.put(`/api/animes/${selecionado.id}`, {
                 title: titulo,
-                imageUrl: imagemUrl,
+                imageUrl: imageUrl,
                 estudio: estudio,
                 genero: genero,
-                ano: ano_lancamento,
-                numero_episodios: numero_episodios,
+                ano_lancamento: parseInt(ano_lancamento),
+                numero_episodios: parseInt(numero_episodios),
             });
 
             Alert.alert('Anime atualizado!', resposta.data.data.title);
@@ -141,8 +157,8 @@ export default function AnimesEditarScreen() {
                         <Text style={styles.rotulo}>URL da imagem</Text>
                         <TextInput
                             style={styles.campo}
-                            value={imagemUrl}
-                            onChangeText={setImagemUrl}
+                            value={imageUrl}
+                            onChangeText={setImageUrl}
                             placeholder="Ex: https://exemplo.com/naruto.jpg"
                         />
 
@@ -165,7 +181,7 @@ export default function AnimesEditarScreen() {
                         <Text style={styles.rotulo}>Ano de lançamento</Text>
                         <TextInput
                             style={styles.campo}
-                            value={String(ano_lancamento)}
+                            value={ano_lancamento}
                             onChangeText={setAno_lancamento}
                             placeholder="Ex: 2026"
                             keyboardType="numeric"
