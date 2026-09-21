@@ -11,8 +11,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios";
 
-const API_KEY =
-  "cv_TQBPOM6hYvO_NCzpyh8A0Cr_l6wQFo71wH3lHewIHs6bo_OaDXjaLNAGqtld51HK";
+const API_KEY = 'cv_wMNeS1xWfSLeiV4uXHcIdQiTqFxSPYR8t5oVvXt6kloBkaMGr7z-OVZRbGNCC_CH';
+
 const api = axios.create({
   baseURL: "https://api-ds.codeverse.dev.br",
   headers: {
@@ -30,7 +30,7 @@ export default function AnimesCriarScreen() {
   const [enviando, setEnviando] = useState(false);
 
   async function criarAnime() {
-    
+
     if (!titulo) {
       Alert.alert("Preencha pelo menos o título.");
       return;
