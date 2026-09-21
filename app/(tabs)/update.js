@@ -33,7 +33,7 @@ export default function AnimesEditarScreen() {
     const [estudio, setEstudio] = useState('');
     const [genero, setGenero] = useState('');
     const [ano_lancamento, setAno_lancamento] = useState('');
-    const [numero_de_episodios, setNumero_de_episodios] = useState('');
+    const [numero_episodios, setNumero_episodios] = useState('');
 
     async function buscarAnimes() {
         setCarregando(true);
@@ -61,7 +61,7 @@ export default function AnimesEditarScreen() {
         setEstudio(anime.estudio ?? '');
         setGenero(anime.genero ?? '');
         setAno_lancamento(anime.ano_lancamento ?? '');
-        setNumero_de_episodios(anime.numero_de_episodios ?? '');
+        setNumero_episodios(anime.numero_episodios ?? '');
     }
 
     async function salvarEdicao() {
@@ -79,7 +79,7 @@ export default function AnimesEditarScreen() {
                 estudio: estudio,
                 genero: genero,
                 ano: ano_lancamento,
-                numero_de_episodios: numero_de_episodios,
+                numero_episodios: numero_episodios,
             });
 
             Alert.alert('Anime atualizado!', resposta.data.data.title);
@@ -174,8 +174,8 @@ export default function AnimesEditarScreen() {
                         <Text style={styles.rotulo}>Número de episódios</Text>
                         <TextInput
                             style={styles.campo}
-                            value={numero_de_episodios}
-                            onChangeText={setNumero_de_episodios}
+                            value={numero_episodios}
+                            onChangeText={setNumero_episodios}
                             placeholder="Ex: 24"
                         />
 
