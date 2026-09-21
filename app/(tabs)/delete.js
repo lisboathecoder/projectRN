@@ -35,7 +35,7 @@ export default function AnimeExcluirScreen() {
                 params: { limit: 50 },
             });
             setAnime(resposta.data.data);
-        } catch (e) {
+        } catch (error) {
             setErro('Não foi possível carregar os animes. Tenta de novo em instantes.');
         } finally {
             setCarregando(false);
@@ -67,7 +67,7 @@ export default function AnimeExcluirScreen() {
             await api.delete(`/api/animes/${id}`);
 
             setAnime((atual) => atual.filter((item) => item.id !== id));
-        } catch (e) {
+        } catch (error) {
             Alert.alert(
                 'Não deu pra excluir o anime',
                 'A API respondeu com erro. Tenta de novo em instantes.',
