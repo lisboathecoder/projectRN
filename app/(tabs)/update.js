@@ -43,7 +43,7 @@ export default function AnimesEditarScreen() {
                 params: { limit: 50 },
             });
             setanimes(resposta.data.data);
-        } catch (e) {
+        } catch (error) {
             setErro('Não foi possível carregar os animes. Tenta de novo em instantes.');
         } finally {
             setCarregando(false);
@@ -86,7 +86,7 @@ export default function AnimesEditarScreen() {
 
             setSelecionado(null);
             buscarAnimes();
-        } catch (e) {
+        } catch (error) {
             Alert.alert(
                 'Não deu pra atualizar o anime',
                 'A API respondeu com erro. Confere se todos os campos estão certinhos e tenta de novo.',
